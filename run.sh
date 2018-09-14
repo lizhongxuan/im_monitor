@@ -6,7 +6,7 @@ popd > /dev/null
 
 
 start() {
-    nohup $BASEDIR/im_monitor  -log_dir=/data/logs/im_monitor im_monitor.cfg  >/data/logs/im_monitor/im_monitor.log  2>&1 &
+    nohup $BASEDIR/im_monitor  -log_dir=/data/logs/im_monitor  >/data/logs/im_monitor/im_monitor.log  2>&1 &
 }
 
 stop() {
