@@ -18,6 +18,17 @@ const (
 	GB = 1024 * MB
 )
 
+func Alterting(c *gin.Context) {
+	var m map[string]interface{}
+	c.BindJSON(&m)
+	fmt.Println("alerting m:",m)
+
+	message := "OK"
+	c.String(http.StatusOK, "\n"+message)
+}
+
+
+
 // HealthCheck shows `OK` as the ping-pong result.
 func HealthCheck(c *gin.Context) {
 	message := "OK"

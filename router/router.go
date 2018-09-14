@@ -25,6 +25,6 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		svcd.GET("/ram", sd.RAMCheck)
 	}
 
-
+	g.POST("/grafana_alerting",sd.Alterting)
 	return g
 }
