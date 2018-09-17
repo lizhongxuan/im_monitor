@@ -115,6 +115,19 @@ func Push_saveDo(path string) {
 		Commit("save",tags,fields)
 	}
 
+	handle_goroutine,ok := m["handle_goroutine"].(float64)
+	if ok {
+		tags := map[string]string{
+			"v": "handle_goroutine",
+		}
+
+		fields := map[string]interface{}{
+			"number": handle_goroutine,
+		}
+
+		Commit("handle",tags,fields)
+	}
+
 
 }
 

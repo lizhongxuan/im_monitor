@@ -57,6 +57,14 @@ func writeInfluxdb(measurement string, tags map[string]string, fields map[string
 		return
 	}
 
+	t := time.Now()
+	pt, err := client.NewPoint(measurement, tags, fields, t)
+	if err != nil {
+		glog.Warning(err)
+		return
+	}
+
+
 	if pbs_c.pbs == nil {
 		pbs2, err := client.NewBatchPoints(client.BatchPointsConfig{
 			Database:  "im_monitor",
@@ -69,12 +77,9 @@ func writeInfluxdb(measurement string, tags map[string]string, fields map[string
 		pbs_c.pbs = pbs2
 	}
 
-	t := time.Now()
-	pt, err := client.NewPoint(measurement, tags, fields, t)
-	if err != nil {
-		glog.Warning(err)
-		return
-	}
+
+	glog.Info("pbs :",pbs_c.pbs)
+	glog.Info("pt:",pt)
 
 	pbs_c.pbs.AddPoint(pt)
 }

@@ -23,9 +23,6 @@ type monitor_heart struct{
 	sync.RWMutex
 }
 
-
-
-
 func main() {
 	pflag.Parse()
 
