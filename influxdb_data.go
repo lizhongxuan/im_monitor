@@ -31,16 +31,15 @@ func runInfluxdb(addr string, username string, password string) {
 			// Write the batch
 			if err := c.Write(pbs_c.pbs); err != nil {
 				glog.Warning(err)
-			}else {
-				pbs_c.pbs = nil
 			}
+			pbs_c.pbs = nil
 			pbs_c.Unlock()
 			// Close client resources
 			if err := c.Close(); err != nil {
 				glog.Warning(err)
 			}
 
-			pbs_c.pbs = nil
+
 		} else {
 			time.Sleep(5 * time.Second)
 		}

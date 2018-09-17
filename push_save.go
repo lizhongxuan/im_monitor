@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-	"time"
 	"github.com/golang/glog"
 	"encoding/json"
 	"io/ioutil"
@@ -34,7 +33,7 @@ func Push_saveDo(path string) {
 			"number": push_all,
 		}
 
-		Commit("push",tags,fields)
+		writeInfluxdb("push",tags,fields)
 	}
 
 	push_success,ok := m["push_success"].(float64)
@@ -47,7 +46,7 @@ func Push_saveDo(path string) {
 			"number": push_success,
 		}
 
-		Commit("push",tags,fields)
+		writeInfluxdb("push",tags,fields)
 	}
 
 	push_fail_badtoken,ok := m["push_fail_badtoken"].(float64)
@@ -60,7 +59,7 @@ func Push_saveDo(path string) {
 			"number": push_fail_badtoken,
 		}
 
-		Commit("push",tags,fields)
+		writeInfluxdb("push",tags,fields)
 	}
 
 	push_fail_other,ok := m["push_fail_other"].(float64)
@@ -73,7 +72,7 @@ func Push_saveDo(path string) {
 			"number": push_fail_other,
 		}
 
-		Commit("push",tags,fields)
+		writeInfluxdb("push",tags,fields)
 	}
 
 	save_all,ok := m["save_all"].(float64)
@@ -86,7 +85,7 @@ func Push_saveDo(path string) {
 			"number": save_all,
 		}
 
-		Commit("save",tags,fields)
+		writeInfluxdb("save",tags,fields)
 	}
 
 	save_success,ok := m["save_success"].(float64)
@@ -99,7 +98,7 @@ func Push_saveDo(path string) {
 			"number": save_success,
 		}
 
-		Commit("save",tags,fields)
+		writeInfluxdb("save",tags,fields)
 	}
 
 	save_fail,ok := m["save_fail"].(float64)
@@ -112,7 +111,7 @@ func Push_saveDo(path string) {
 			"number": save_fail,
 		}
 
-		Commit("save",tags,fields)
+		writeInfluxdb("save",tags,fields)
 	}
 
 	handle_goroutine,ok := m["handle_goroutine"].(float64)
@@ -125,24 +124,9 @@ func Push_saveDo(path string) {
 			"number": handle_goroutine,
 		}
 
-		Commit("handle",tags,fields)
+		writeInfluxdb("handle",tags,fields)
 	}
 
 
 }
 
-func Commit(name string,tags map[string]string,fields map[string]interface{})  {
-
-	node := &influxdbNode{
-		name: name,
-		time: time.Now().Unix(),
-		tags:tags,
-		fields:fields,
-	}
-	select {
-	case monitorCommitCh <- node:
-	default:
-		glog.Error("node commit chan err -- name:",name)
-
-	}
-}
