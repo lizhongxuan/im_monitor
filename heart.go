@@ -9,7 +9,6 @@ import (
 func HeartDo(name string, path string) {
 	fmt.Println("HeartDo - path:",path)
 	resp, err := http.Get(path)
-
 	if err != nil || resp.StatusCode != 200  {
 		monitorHeart.Lock()
 		times,ok := monitorHeart.heartMap[name]
@@ -22,6 +21,6 @@ func HeartDo(name string, path string) {
 		return
 	}
 
-	resp.Body.Close()
+	defer resp.Body.Close()
 	fmt.Println(name, " HTTPDo success.")
 }

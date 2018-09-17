@@ -17,6 +17,17 @@ import (
 
 func monitorQuest() {
 	go accumulater()
+
+	monitorHeart.Lock()
+	for k, _ := range moni {
+		_,ok := monitorHeart.heartMap[k]
+		if !ok {
+			monitorHeart.heartMap[k] = 0
+		}
+	}
+	monitorHeart.Unlock()
+
+
 	for {
 		select {
 		case <-time.After(time.Second * 10):
