@@ -29,7 +29,9 @@ func HeartDo(name string, path string) {
 		monitorHeart.heartMap[name] = times
 		monitorHeart.Unlock()
 	}
-
+	monitorHeart.Lock()
+	monitorHeart.heartMap[name] = 0
+	monitorHeart.Unlock()
 	resp.Body.Close()
 	fmt.Println(name, " HTTPDo success.")
 }
