@@ -6,15 +6,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-//var monitorCommitCh chan *influxdbNode
-
-//type influxdbNode struct {
-//	name string
-//	tags map[string]string
-//	fields map[string]interface{}
-//	time int64
-//}
-
 func monitorQuest() {
 	go accumulater()
 
@@ -41,7 +32,6 @@ func monitorQuest() {
 	}
 }
 
-
 func accumulater() {
 	for {
 		select {
@@ -59,5 +49,4 @@ func accumulater() {
 			}
 		}
 	}
-
 }
