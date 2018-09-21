@@ -27,7 +27,9 @@ func monitorQuest() {
 				fmt.Println("v:", v)
 				go HeartDo(k, v)
 			}
-			go Push_saveDo(viper.GetString("im_handle"))
+			go Push_saveDo(viper.GetString("im_handle_path"))
+			go IMDo(viper.GetString("im_path"))
+
 		}
 	}
 }

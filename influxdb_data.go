@@ -75,10 +75,5 @@ func writeInfluxdb(measurement string, tags map[string]string, fields map[string
 		}
 		pbs_c.pbs = pbs2
 	}
-
-
-	glog.Info("pbs :",pbs_c.pbs)
-	glog.Info("pt:",pt)
-
 	pbs_c.pbs.AddPoint(pt)
 }

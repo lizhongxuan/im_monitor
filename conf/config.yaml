@@ -6,4 +6,5 @@ max_ping_count: 10           # pingServer函数try的次数
 monitor:
   im: http://127.0.0.1:6666/ping
   push: http://127.0.0.1:9901/ping
-im_handle: http://127.0.0.1:9901/status
+im_handle_path: http://127.0.0.1:9901/status
+im_handle_path: http://127.0.0.1:6666/summary
