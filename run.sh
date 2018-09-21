@@ -13,6 +13,10 @@ stop() {
     killall im_monitor
 }
 
+ps() {
+    ps -ef | grep im_monitor
+}
+
 case "$1" in
     start)
         start
@@ -20,6 +24,10 @@ case "$1" in
 
     stop)
         stop
+        ;;
+
+    ps)
+        ps
         ;;
 
     *)
