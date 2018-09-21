@@ -13,10 +13,6 @@ stop() {
     killall im_monitor
 }
 
-ps() {
-    ps -ef | grep im_monitor
-}
-
 case "$1" in
     start)
         start
@@ -26,9 +22,6 @@ case "$1" in
         stop
         ;;
 
-    ps)
-        ps
-        ;;
 
     *)
         echo $"Usage: $0 {start|stop}"
